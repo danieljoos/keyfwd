@@ -39,5 +39,5 @@ keyfwd.exe client
 TODO
 ----
 
-* Add a tray-icon and hide the console window
+* ~~Add a tray-icon and hide the console window~~
 * maybe add Linux support (KDE?)
