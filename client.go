@@ -7,15 +7,15 @@ import (
 	"net"
 )
 
-type Client struct {
-	keyboardCapture  *KeyboardCapture
-	encryption       Encryption
-	connection       *net.UDPConn
-	configuration    *ClientConfiguration
+type _Client struct {
+	keyboardCapture *KeyboardCapture
+	encryption      Encryption
+	connection      *net.UDPConn
+	configuration   *ClientConfiguration
 }
 
-func NewClient(config *ClientConfiguration) *Client {
-	ret := new(Client)
+func NewClient(config *ClientConfiguration) *_Client {
+	ret := new(_Client)
 	ret.keyboardCapture = NewKeyboardCapture(config.ForwardedKeys)
 	ret.configuration = config
 	return ret
@@ -26,7 +26,7 @@ func NewClient(config *ClientConfiguration) *Client {
 // message to be sent to the configured remote host via UDP.
 // The function blocks until the Client.Stop() function was called.
 // Returns an error in case the keyboard interception initialization or UDP client initialization failed.
-func (t *Client) Start() error {
+func (t *_Client) Start() error {
 	quit := make(chan bool)
 	go func() {
 		addr, err := net.ResolveUDPAddr("udp", fmt.Sprintf("%s:%d", t.configuration.Hostname, t.configuration.Port))
@@ -62,7 +62,7 @@ func (t *Client) Start() error {
 
 // Stops the key-press interception and causes the Client.Start() function to return.
 // Intended to be called from another 'thread' (goroutine) as Client.Start().
-func (t *Client) Stop() {
+func (t *_Client) Stop() {
 	log.Println("Stopping keyboard interception")
 	t.keyboardCapture.Stop()
 }

@@ -2,11 +2,11 @@ package main
 
 import (
 	"bufio"
-	"os"
 	"fmt"
-	"strings"
-	"strconv"
 	"github.com/howeyc/gopass"
+	"os"
+	"strconv"
+	"strings"
 )
 
 // Interactive client configuration.

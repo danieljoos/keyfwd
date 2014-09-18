@@ -7,20 +7,20 @@ import (
 	"net"
 )
 
-type Server struct {
+type _Server struct {
 	configuration *ServerConfiguration
 	encryption    Encryption
-	emitter *KeyboardEmitter
+	emitter       *KeyboardEmitter
 }
 
-func NewServer(config *ServerConfiguration) *Server {
-	ret := new(Server)
+func NewServer(config *ServerConfiguration) *_Server {
+	ret := new(_Server)
 	ret.configuration = config
 	ret.emitter = NewKeyboardEmitter()
 	return ret
 }
 
-func (t *Server) Start() error {
+func (t *_Server) Start() error {
 	t.encryption.Initialize(t.configuration.Secret)
 	var buf [1024]byte
 	addr, _ := net.ResolveUDPAddr("udp", fmt.Sprintf(":%d", t.configuration.Port))
@@ -38,5 +38,5 @@ func (t *Server) Start() error {
 	}
 }
 
-func (t *Server) Stop() {
+func (t *_Server) Stop() {
 }

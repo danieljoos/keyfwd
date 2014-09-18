@@ -45,7 +45,7 @@ func regSetString(hKey w32.HKEY, subKey string, value string) (errno int) {
 		uintptr(0),
 		uintptr(w32.REG_SZ),
 		uintptr(vptr),
-		uintptr(len(value) * 2))
+		uintptr(len(value)*2))
 	return int(ret)
 }
 
